@@ -1,21 +1,45 @@
 # Defining a reference architecture
 
-Things we need to establish are:
+High-level strategy is to base the reference architecture on NERSC's Data 
+Collect and implement it as a set of Docker containers, along with these
+web pages describing how to setup and customize the design
 
-- What should be the priorities? (i.e. what things to monitor?)  
-  List of candidates:  
-    - ERD endpoint or otherwise forwarding SEDC data off by other means
-    - Viz with Graphana, using container with support infrastructure built
-    - High frequency/high bandwidth data: live view only, never store
-    - Back end database technologies: Retention, reduction, archival 
-      considerations
-    - Alerting: how to do, considerations
-    - Transports: considerations and options
-    - Non-web options for using, consuming, transporting, etc....
 
-- What constraints should we consider?  
-  i.e. what is a reasonable minimum commitment of hardware or software for the
-  reference architecture to require?
+## Requirements, contraints and implications of those
+
+- must support being implemented incrementally - bite-sized chunks
+
+- should be able to run *something* on minimal hardware (ideally 1 server), 
+  and scale up to collect more data from more sources by adding servers
+  (a container approach should support this)
+
+- Docker is a convenient platform for the reference architecture, but we don't
+  want to be locked into it - should be possible to implement on eg VMs or 
+  bare metal too  
+  Including Dockerfiles (as well as docker-compose file) should help with this
+  as they include an install recipe
+
+- should support on-the-fly analysis of high-frequency/never-stored data  
+  This is supported by including a message queueing service before ingest.
+  NERSC uses RabbitMQ for message buffer. Caribou uses Kafka. Spark also 
+  reportedly supports this sort of flow. Some exploration of the capabilities 
+  of each is interesting
+
+
+## High priority use-cases
+
+- Diagnose reason for large apparent variation in job runtime
+  - other applications competing for resources?
+  - failing components, full filesystems?
+  - job parameters, user script?
+
+- Understanding and diagnosing HSN performance characteristics
+   - practical way to collect Aries counters
+   - resource/utilization needs?
+   - job placement within the network
+
+- Support for central syslogging
+
 
 ## Architecture vision
 

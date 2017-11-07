@@ -24,6 +24,17 @@ Debian-based image for now
   ...
 ```
 
+The Dockerfile includes a step like:
+`gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 0A9AF2115F4687BD29803A206B73A36E6026DFCA`
+which sometimes fails with a message like:
+`gpg: keyserver receive failed: Cannot assign requested address`
+This seems to be an issue at the keyserver end (perhaps load), waiting a while 
+and trying again eventually works. If you persistently have trouble, try 
+modifying the Dockerfile to use a different keyserver from the pool (see 
+https://sks-keyservers.net/overview-of-pools.php for a list) or a different
+method of checking the key signature (see instructions at 
+https://www.rabbitmq.com/signatures.html)
+
 RabbitMQ uses ports 4369, 5671, 5672 and 25672, so we'll need to make these 
 visible from outside the container (the DockerFile exposes them via the 
 `EXPOSE` command). We use the `-p host_port:guest_port` option of `docker run` 
@@ -38,4 +49,8 @@ numbers is ok for now:
 ```
 
 There is a simple tutorial on the [RabbitMQ web pages](https://www.rabbitmq.com/tutorials/tutorial-one-python.html)
-to test that the containerized RabbitMQ server is working correctly
+to test that the containerized RabbitMQ server is working correctly. You will 
+need the python `pika` package to use the example, you can install it with
+`pip install pika`
+
+ 
