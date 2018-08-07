@@ -76,12 +76,10 @@ The message buffer/queue serves a few purposes:
 
 [RabbitMQ](https://www.rabbitmq.com/) and [Kafka](https://kafka.apache.org/) 
 are well-known options, they approach the problem differently. 
-[This blog post](https://content.pivotal.io/blog/understanding-when-to-use-rabbitmq-or-apache-kafka)
-is a helpful overview. The NERSC Data Collect uses RabbitMQ, it takes a "smart
-broker, dumb consumer" view, while Kafka takes the opposite. RabbitMQ is more 
-mature, Kafka is more performance-oriented. We'll use RabbitMQ here.
 
-#### Which storage to use?
+See [Resources/Message Queuing Systems](/resources/message_queues) for detailed notes.
+
+### Which storage to use?
 
 There are *many* databases to choose from. NESRC undertook an exercise to 
 identify the questions we want data collection to help answer, and what types
@@ -90,9 +88,8 @@ summary of what we found. Summarizing it further: most data is either
 time-series metrics, snaphots and logs, or document/record-oriented data (also
 with time fields).
 
-For insert-heavy workloads with challenging performance requirements, NoSQL 
-databases tend to perform well. NERSC is using ElasticSearch (document-oriented
-database) and we will use the same here.
+See [Resources/Databases](/resources/databases.md) for database options and comparisons.
+
 
 ![collection_summary.png](../resources/collection_summary.png "Data collection needed to support different types of questions")
 

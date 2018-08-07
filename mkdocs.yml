@@ -26,10 +26,12 @@ extra:
     primary: 'cyan'
     accent: 'green'
   logo: 'images/n_sq_logo_sm.jpg'
-site_favicon: 'images/favicon.ico'
+#site_favicon: 'images/favicon.ico'
 pages:
 - Introduction: index.md
 - HowTo: howto/index.md 
-- Resources: resources/index.md 
+- Resources: 
+    - Databases: resources/databases.md 
+    - Message Queues: resources/message_queues.md 
 - Project: project/index.md 
 
