@@ -32,6 +32,7 @@ pages:
 - HowTo: howto/index.md 
 - Resources: 
     - Databases: resources/databases.md 
+    - Sample: resources/databases/sqlite-stevel-queues.md 
     - Message Queues: resources/message_queues.md 
 - Project: project/index.md 
 

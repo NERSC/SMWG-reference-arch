@@ -2,7 +2,7 @@
 
 ## RDBMS vs various NoSQL
 
-### RDBMS
+### RDBMS <a name="sql"/>
 
 RDBMS (SQL) is mostly about consistency and reliability
 
@@ -18,11 +18,11 @@ rows can be searched, cols/fields can be indexed to make search faster
 searches requiring more than one table are expensive, returns a giant NxM-row table
 heirarchical relationships are hasslesome 
 
-### Key-Value
+### Key-Value <a name="key-value"/>
 
  simple, fast 1:1 storage of things by hashed key
 
-### Document DB
+### Document DB <a name="doc-db"/>
 
  like key-value, but the value is in some semi-structured format eg json, so a stored object can have attributes. Can create indexes on an attribute for faster searching of documents having that attribute
 Good when not all data is the same, or data is not well suited to normalization (needs more flexibility)
@@ -39,11 +39,11 @@ writing tends to be very fast (no ACID, so no need for much locking), reading/qu
 => consistency is harder, expect things to "drift"     
 
 
-### Column-store
+### Column-store <a name="col-store"/>
 
 like RDBMS, but instead of storing a record at a time, store each column as a contiguous block. Means queries on multiple columns, or on few columns in large record, require less I/O, less seeking, less memory, etc, and tend to be faster. Writing likely to be slower / more difficult / might be only eventually-consistent, not always consistent
 
-### Graph DB
+### Graph DB <a name="graph-db"/>
 
  - stored as set of triples of "object, relationship, subject"
  - each part of the tripple can have attributes which can be used in queries
@@ -54,7 +54,7 @@ article maybe worth a look: https://markedaspertinent.wordpress.com/2009/08/04/n
 also:
 https://blog.timescale.com/time-series-data-why-and-how-to-use-a-relational-database-instead-of-nosql-d0cd6975e87c
 
-## Time-series databases
+## Time-series databases <a name="timeseries"/>
 
 - characterized by having a heavy insert load, but updates are rare (queries might be common though)
 - more recent data is more likely to be "active"
